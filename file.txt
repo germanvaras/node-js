@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Remera Nube",
+    "price": 5000,
+    "thumbnail": "http://",
+    "id": 1
+  },
+  {
+    "title": "Remera Black",
+    "price": 4000,
+    "thumbnail": "http://",
+    "id": 2
+  },
+  {
+    "title": "Remera Sword",
+    "price": 4500,
+    "thumbnail": "http://",
+    "id": 3
+  },
+  {
+    "title": "Remera Black",
+    "price": 4000,
+    "thumbnail": "http://",
+    "id": 5
+  },
+  {
+    "title": "Remera Sword",
+    "price": 4500,
+    "thumbnail": "http://",
+    "id": 5
+  }
+]

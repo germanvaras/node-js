@@ -10,6 +10,11 @@ const product2 = {
     price: 4000,
     thumbnail: 'http://'
 }
+const product3 = {
+    title: "Remera Sword",
+    price: 4500,
+    thumbnail: 'http://'
+}
 
 class Contenedor {
     constructor(file) {
@@ -20,9 +25,9 @@ class Contenedor {
         try {
             const data = await fs.promises.readFile(this.file, "utf-8")
             const dataParse = JSON.parse(data)
-            const id = dataParse.length + 1
+            const id =  dataParse.at(-1).id + 1
             dataParse.push({ ...product, id: id })
-            await fs.promises.writeFile(this.file, JSON.stringify(dataParse));
+            await fs.promises.writeFile(this.file, JSON.stringify(dataParse, null, 2));
             return id
         }
         catch {
@@ -53,7 +58,7 @@ class Contenedor {
         try {
             const data = await fs.promises.readFile(this.file, "utf-8")
             const dataParse = JSON.parse(data)
-            const filterData = dataParse.filter((filter)=> filter.id !== numberId) 
+            const filterData = dataParse.filter((filter) => filter.id !== numberId)
             await fs.promises.writeFile(this.file, JSON.stringify(filterData));
         }
         catch (err) {
@@ -79,6 +84,7 @@ const run = async () => {
         console.log(await products.getAll())
         await products.deleteById(4)
         console.log(await products.getAll())
+        console.log(await products.save(product3))
         // descomentar para eliminar todo
         // await products.deleteAll()
         // console.log(await products.getAll())
