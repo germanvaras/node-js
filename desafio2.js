@@ -25,10 +25,15 @@ class Contenedor {
         try {
             const data = await fs.promises.readFile(this.file, "utf-8")
             const dataParse = JSON.parse(data)
-            const id =  dataParse.at(-1).id + 1
-            dataParse.push({ ...product, id: id })
+            let idMax = 0
+            dataParse.forEach( prod => {
+                if(prod.id > idMax){
+                    idMax = prod.id
+                }})
+            
+            dataParse.push({ ...product, id: idMax + 1  })
             await fs.promises.writeFile(this.file, JSON.stringify(dataParse, null, 2));
-            return id
+            return idMax + 1
         }
         catch {
             await fs.promises.writeFile(this.file, JSON.stringify([{ ...product, id: 1 }]));
@@ -78,12 +83,12 @@ const run = async () => {
     try {
         const products = new Contenedor("./file.txt")
         console.log(await products.save(product))
-        console.log(await products.getById(1))
-        console.log(await products.getAll())
+        // console.log(await products.getById(1))
+        // console.log(await products.getAll())
         console.log(await products.save(product2))
-        console.log(await products.getAll())
+        // console.log(await products.getAll())
         await products.deleteById(4)
-        console.log(await products.getAll())
+        // console.log(await products.getAll())
         console.log(await products.save(product3))
         // descomentar para eliminar todo
         // await products.deleteAll()
