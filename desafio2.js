@@ -1,21 +1,4 @@
 const fs = require("fs")
-
-const product = {
-    title: "Remera Nube",
-    price: 5000,
-    thumbnail: 'http://'
-}
-const product2 = {
-    title: "Remera Black",
-    price: 4000,
-    thumbnail: 'http://'
-}
-const product3 = {
-    title: "Remera Sword",
-    price: 4500,
-    thumbnail: 'http://'
-}
-
 class Contenedor {
     constructor(file) {
         this.file = file
@@ -78,23 +61,4 @@ class Contenedor {
         }
     }
 }
-
-const run = async () => {
-    try {
-        const products = new Contenedor("./file.txt")
-        console.log(await products.save(product))
-        // console.log(await products.getById(1))
-        // console.log(await products.getAll())
-        console.log(await products.save(product2))
-        // console.log(await products.getAll())
-        await products.deleteById(4)
-        // console.log(await products.getAll())
-        console.log(await products.save(product3))
-        // descomentar para eliminar todo
-        // await products.deleteAll()
-        // console.log(await products.getAll())
-    } catch {
-        console.log("No corre")
-    }
-}
-run()
+module.exports = Contenedor;
